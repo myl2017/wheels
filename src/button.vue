@@ -1,20 +1,76 @@
-<template>
-	<!-- -->
-	<button class="g-button">hi</button>
+<template xmlns="http://www.w3.org/1999/html">
+	<button class="g-button" :class="{[`icon-${iconPosition}`]: true}">
+		<g-icon class="loading" name="loading">
+		</g-icon>
+		<g-icon class="icon" v-if="icon" :name="icon">
+		</g-icon>
+		<div class="content">
+			<slot/>
+		</div>
+	</button>
 </template>
 
 <script>
-  export default {}
+  export default {
+    props: {
+      icon: {},
+      iconPosition: {
+        type: String,
+        default: 'left',
+        validator(value) { // 属性检查器
+          return value === 'left' || value === 'right'
+        }
+      }
+    }
+  }
 </script>
 
 <style lang="scss">
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
 	.g-button {
 		font-size: var(--font-size);
 		height: var(--button-height);
-		padding: 0 1em;
+		padding: 0 .9em;
 		border-radius: var(--border-radius);
 		border: 1px solid var(--border-color);
 		background: var(--button-bg);
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		vertical-align: middle;
+
+		> .content {
+			order: 2;
+		}
+
+		> .icon {
+			order: 1;
+			margin-right: .3em
+		}
+
+		&.icon-right {
+			> .content {
+				order: 1;
+			}
+
+			> .icon {
+				order: 2;
+				margin-right: 0;
+				margin-left: .3em
+			}
+		}
+
+		.loading {
+			animation: spin 1s infinite linear;
+		}
 
 		&:hover {
 			border-color: var(--border-color-hover);
