@@ -1,8 +1,8 @@
 <template xmlns="http://www.w3.org/1999/html">
 	<button class="g-button" :class="{[`icon-${iconPosition}`]: true}" @click="$emit('click')">
-		<g-icon v-if="loading" class="loading icon" name="loading">
+		<g-icon class="icon" v-if="icon && !loading" :name="icon">
 		</g-icon>
-		<g-icon class="icon" v-if="icon" :name="icon">
+		<g-icon v-if="loading" class="loading icon" name="loading">
 		</g-icon>
 		<div class="content">
 			<slot/>
