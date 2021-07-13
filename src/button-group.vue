@@ -35,8 +35,8 @@
 				border-bottom-left-radius: var(--border-radius);
 			}
 
-			&.last-child {
-				border-top-left-radius: var(--border-radius);
+			&:last-child {
+				border-top-right-radius: var(--border-radius);
 				border-bottom-right-radius: var(--border-radius);
 			}
 

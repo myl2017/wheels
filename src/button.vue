@@ -56,7 +56,7 @@
 		}
 
 		> .icon {
-			order: 1;
+			order: 1; /*排列顺序*/
 			margin-right: .3em
 		}
 
