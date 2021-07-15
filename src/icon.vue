@@ -8,12 +8,12 @@
   import './svg'
 
   export default {
-    name: 'icon',
+    name: 'GuluIcon',
     props: ['name']
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.g-icon {
 		width: 1em;
 		height: 1em;
