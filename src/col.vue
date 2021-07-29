@@ -24,7 +24,6 @@ export default {
     offset: {
       type: [Number, String]
     },
-    phone: {type: Object, validator,},
     ipad: {type: Object, validator,},
     narrowPc: {type: Object, validator,},
     pc: {type: Object, validator,},
@@ -37,17 +36,14 @@ export default {
   },
   computed: {
     colClass() {
-      let {span, offset, phone, ipad, narrowPc, pc, widePc} = this
-      let phoneClass = []
-
+      let {span, offset, ipad, narrowPc, pc, widePc} = this
       return [
         span && `col-${span}`,
         offset && `offset-${offset}`,
-        ...(phone && [`col-phone-${phone.span}`]),
-        ...(ipad && [`col-phone-${ipad.span}`]),
-        ...(narrowPc && [`col-phone-${narrowPc.span}`]),
-        ...(pc && [`col-phone-${pc.span}`]),
-        ...(widePc && [`col-phone-${widePc.span}`]),
+        ...(ipad && [`col-ipad-${ipad.span}`]),
+        ...(narrowPc && [`col-narrowPc-${narrowPc.span}`]),
+        ...(pc && [`col-pc-${pc.span}`]),
+        ...(widePc && [`col-widePc-${widePc.span}`]),
       ]
     },
     colStyle() {
@@ -72,21 +68,6 @@ export default {
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {
       margin-left: ($n / 24) * 100%;
-    }
-  }
-
-  @media (max-width: 576px) {
-    $class-prefix: col-phone-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        width: ($n / 24) * 100%;
-      }
-    }
-    $class-prefix: offset-phone-; /*可以重复用同一个变量*/
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        margin-left: ($n / 24) * 100%;
-      }
     }
   }
 
