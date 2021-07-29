@@ -5,6 +5,16 @@
 </template>
 
 <script>
+let validator = (value) => {
+  let keys = Object.keys(value)
+  let invalid = true
+  keys.forEach(key => {
+    if (!['span', 'offset'].includes(key)) {
+      invalid = false
+    }
+  })
+  return invalid
+}
 export default {
   name: "GuluCol",
   props: {
@@ -14,6 +24,11 @@ export default {
     offset: {
       type: [Number, String]
     },
+    phone: {type: Object, validator,},
+    ipad: {type: Object, validator,},
+    narrowPc: {type: Object, validator,},
+    pc: {type: Object, validator,},
+    widePc: {type: Object, validator,}
   },
   data() {
     return {
@@ -22,8 +37,18 @@ export default {
   },
   computed: {
     colClass() {
-      let {span, offset} = this
-      return [span && `col-${span}`, offset && `offset-${offset}`]
+      let {span, offset, phone, ipad, narrowPc, pc, widePc} = this
+      let phoneClass = []
+
+      return [
+        span && `col-${span}`,
+        offset && `offset-${offset}`,
+        ...(phone && [`col-phone-${phone.span}`]),
+        ...(ipad && [`col-phone-${ipad.span}`]),
+        ...(narrowPc && [`col-phone-${narrowPc.span}`]),
+        ...(pc && [`col-phone-${pc.span}`]),
+        ...(widePc && [`col-phone-${widePc.span}`]),
+      ]
     },
     colStyle() {
       return {
@@ -37,7 +62,6 @@ export default {
 
 <style scoped lang="scss">
 .col {
-  width: 50%;
   $class-prefix: col-;
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {
@@ -50,5 +74,83 @@ export default {
       margin-left: ($n / 24) * 100%;
     }
   }
+
+  @media (max-width: 576px) {
+    $class-prefix: col-phone-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        width: ($n / 24) * 100%;
+      }
+    }
+    $class-prefix: offset-phone-; /*可以重复用同一个变量*/
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n / 24) * 100%;
+      }
+    }
+  }
+
+  @media (min-width: 576px) and (max-width: 768px) {
+    $class-prefix: col-ipad-;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        width: ($n / 24) * 100%;
+      }
+    }
+    $class-prefix: offset-ipad-; /*可以重复用同一个变量*/
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n / 24) * 100%;
+      }
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 992px) {
+    $class-prefix: col-narrow-pc;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        width: ($n / 24) * 100%;
+      }
+    }
+    $class-prefix: offset-narrow-pc; /*可以重复用同一个变量*/
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n / 24) * 100%;
+      }
+    }
+  }
+
+  @media (min-width: 993px) and (max-width: 1200px) {
+    $class-prefix: col-pc;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        width: ($n / 24) * 100%;
+      }
+    }
+    $class-prefix: offset-pc; /*可以重复用同一个变量*/
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n / 24) * 100%;
+      }
+    }
+  }
+
+  @media (min-width: 1201px) {
+    $class-prefix: col-wide-pc;
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        width: ($n / 24) * 100%;
+      }
+    }
+    $class-prefix: offset-wide-pc; /*可以重复用同一个变量*/
+    @for $n from 1 through 24 {
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n / 24) * 100%;
+      }
+    }
+  }
+
 }
+
+
 </style>
