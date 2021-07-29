@@ -40,10 +40,10 @@ export default {
       return [
         span && `col-${span}`,
         offset && `offset-${offset}`,
-        ...(ipad && [`col-ipad-${ipad.span}`]),
-        ...(narrowPc && [`col-narrowPc-${narrowPc.span}`]),
-        ...(pc && [`col-pc-${pc.span}`]),
-        ...(widePc && [`col-widePc-${widePc.span}`]),
+        ...(ipad ? [`col-ipad-${ipad.span}`] : []),
+        ...(narrowPc ? [`col-narrowPc-${narrowPc.span}`] : []),
+        ...(pc ? [`col-pc-${pc.span}`] : []),
+        ...(widePc ? [`col-widePc-${widePc.span}`] : []),
       ]
     },
     colStyle() {
@@ -58,6 +58,7 @@ export default {
 
 <style scoped lang="scss">
 .col {
+  // phone 默认
   $class-prefix: col-;
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {
@@ -71,7 +72,8 @@ export default {
     }
   }
 
-  @media (min-width: 576px) and (max-width: 768px) {
+  // ipad
+  @media (min-width: 577px) {
     $class-prefix: col-ipad-;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
@@ -85,8 +87,8 @@ export default {
       }
     }
   }
-
-  @media (min-width: 769px) and (max-width: 992px) {
+  // narrow-pc
+  @media (min-width: 769px) {
     $class-prefix: col-narrow-pc;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
@@ -100,8 +102,8 @@ export default {
       }
     }
   }
-
-  @media (min-width: 993px) and (max-width: 1200px) {
+  // pc
+  @media (min-width: 993px) {
     $class-prefix: col-pc;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
@@ -115,7 +117,7 @@ export default {
       }
     }
   }
-
+  // wide-pc
   @media (min-width: 1201px) {
     $class-prefix: col-wide-pc;
     @for $n from 1 through 24 {
