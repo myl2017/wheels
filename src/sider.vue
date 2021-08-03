@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade" v-if="visible">
+  <transition name="slide" v-if="visible">
     <div class="sider">
       <slot></slot>
       <button @click="visible=false">close</button>
@@ -15,11 +15,7 @@ export default {
       visible: true
     }
   },
-  methods: {
-    hide() {
-
-    }
-  }
+  methods: {}
 }
 </script>
 
@@ -34,11 +30,11 @@ export default {
   }
 }
 
-.fade-enter-active, .fade-leave-active {
+.slide-enter-active, .slide-leave-active {
   transition: all .5s;
 }
 
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+.slide-enter, .slide-leave-to /* .slide-leave-active below version 2.1.8 */
 {
   margin-left: -200px;
 }
