@@ -39,7 +39,9 @@ new Vue({
     },
     methods: {
         showToast() {
-            this.$toast('我是 message')
+            this.$toast('<strong>文字</strong>', {
+                enableHtml: true
+            })
         }
     }
 })
