@@ -40,6 +40,7 @@ export default {
       type: String,
       default: 'top',
       validator(value) {
+        console.log('toast=== ', value)
         return ['top', 'bottom', 'middle'].indexOf(value) >= 0
       }
     }
@@ -147,7 +148,5 @@ $toast-bg: rgba(0, 0, 0, 0.75);
     top: 50%;
     transform: translate(-50%, -50%);
   }
-
-
 }
 </style>
