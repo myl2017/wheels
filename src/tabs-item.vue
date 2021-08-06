@@ -46,15 +46,19 @@ export default {
       }
     })
   },
+  mounted() {
+    this.xxx()
+  },
   methods: {
     xxx() {
-      this.eventBus.$emit('update:selected', this.name)
+      this.eventBus.$emit('update:selected', this.name, this)
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+$blue: blue;
 .tabs-item {
   flex-shrink: 0;
   display: inline-flex;
@@ -64,7 +68,8 @@ export default {
   height: 100%;
 
   &.active {
-    background: red;
+    color: $blue;
+    font-weight: bold;
   }
 }
 </style>
