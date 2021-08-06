@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import Vue from "vue";
+
 export default {
   name: "GuluTabs",
   props: {
@@ -15,10 +17,24 @@ export default {
     direction: {
       type: String,
       default: 'horizontal',
-      validator (value) {
+      validator(value) {
         return ['horizontal', 'vertical'].indexOf(value) >= 0
       }
     }
+  },
+  data() {
+    return {
+      eventBus: new Vue()
+    }
+  },
+  provide() { // 事件中心
+    return {
+      eventBus: this.eventBus
+    }
+  },
+  mounted() {
+    // this.$emit('update:selected', '这是 this $emit 出来的数据')
+    this.eventBus.$emit('update:selected', this.selected)
   }
 }
 </script>
