@@ -80,6 +80,7 @@ $disabled-text-color: gray;
 
   &.disabled {
     color: $disabled-text-color;
+    cursor: not-allowed;
   }
 }
 </style>
