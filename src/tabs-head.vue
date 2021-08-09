@@ -43,6 +43,10 @@ $border-color: #ddd;
 
   > .actions-wrapper {
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1em;
   }
 
 }
