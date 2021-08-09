@@ -29,13 +29,16 @@ export default {
   created() {
     this.eventBus.$on('update:selected', (name) => {
       console.log(name)
-      if (name === this.name) {
-        console.log(`我${this.name}被选中了`)
-        this.active = true
-      } else {
-        console.log(`我${this.name}没被选中了`)
-        this.active = false
-      }
+      this.active = name === this.name
+
+      // if (name === this.name) {
+      //   console.log(`我${this.name}被选中了`)
+      //   this.active = true
+      // } else {
+      //   console.log(`我${this.name}没被选中了`)
+      //   this.active = false
+      // }
+
     })
   }
 }
@@ -43,8 +46,9 @@ export default {
 
 <style scoped lang="scss">
 .tabs-pane {
+  padding: 1em;
+
   &.active {
-    background: red;
   }
 }
 </style>

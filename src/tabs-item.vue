@@ -37,13 +37,14 @@ export default {
   created() {
     this.eventBus.$on('update:selected', (name) => {
       console.log(name)
-      if (name === this.name) {
-        console.log(`我${this.name}被选中了`)
-        this.active = true
-      } else {
-        this.active = false
-        console.log(`我${this.name}没被选中了`)
-      }
+      this.active = name === this.name
+      // if (name === this.name) {
+      //   console.log(`我${this.name}被选中了`)
+      //   this.active = true
+      // } else {
+      //   this.active = false
+      //   console.log(`我${this.name}没被选中了`)
+      // }
     })
   },
   mounted() {
@@ -61,7 +62,7 @@ export default {
 $blue: blue;
 .tabs-item {
   flex-shrink: 0;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   padding: 0 1em;
   cursor: pointer;
