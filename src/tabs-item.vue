@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="onClick" :class="classes">
+  <div class="tabs-item" @click="onClick" :class="classes" :data-name="name">
     <slot></slot>
   </div>
 </template>
@@ -36,17 +36,19 @@ export default {
     }
   },
   created() {
-    this.eventBus.$on('update:selected', (name) => {
-      console.log(name)
-      this.active = name === this.name
-      // if (name === this.name) {
-      //   console.log(`我${this.name}被选中了`)
-      //   this.active = true
-      // } else {
-      //   this.active = false
-      //   console.log(`我${this.name}没被选中了`)
-      // }
-    })
+    if (this.eventBus) { // 防御型编程
+      this.eventBus.$on('update:selected', (name) => {
+        console.log(name)
+        this.active = name === this.name
+        // if (name === this.name) {
+        //   console.log(`我${this.name}被选中了`)
+        //   this.active = true
+        // } else {
+        //   this.active = false
+        //   console.log(`我${this.name}没被选中了`)
+        // }
+      })
+    }
   },
   mounted() {
     this.onClick()
