@@ -31,23 +31,28 @@ export default {
     positionContent() {
       const {contentWrapper, triggerWrapper} = this.$refs
       document.body.appendChild(contentWrapper)
-      let {width, height, top, left} = triggerWrapper.getBoundingClientRect()
-      console.log(height)
-      if (this.position === 'top') {
-        contentWrapper.style.left = left + window.screenX + 'px'
-        contentWrapper.style.top = top + window.screenY + 'px'
-      } else if (this.position === 'bottom') {
-        contentWrapper.style.left = left + window.screenX + 'px'
-        contentWrapper.style.top = top + height * 2 + 2 + window.screenY + 'px'
-      } else if (this.position === 'left') {
-        contentWrapper.style.left = left + window.screenX + 'px'
-        let {height: height2} = contentWrapper.getBoundingClientRect()
-        contentWrapper.style.top = top + window.screenY + (height - height2 + 10) + 'px'
-      } else if (this.position === 'right') {
-        contentWrapper.style.left = left + window.screenX + width + 'px'
-        let {height: height2} = contentWrapper.getBoundingClientRect()
-        contentWrapper.style.top = top + window.screenY + height + 10 + 'px'
+      const {width, height, top, left} = triggerWrapper.getBoundingClientRect()
+      const {height: height2} = contentWrapper.getBoundingClientRect()
+      let positions = {
+        top: {
+          top: top + window.screenY,
+          left: left + window.screenX
+        },
+        bottom: {
+          top: top + height * 2 + 2 + window.screenY,
+          left: left + window.screenX
+        },
+        left: {
+          top: top + window.screenY + (height - height2 + 10),
+          left: left + window.screenX
+        },
+        right: {
+          top: top + window.screenY + height + 10,
+          left: left + window.screenX + width
+        }
       }
+      contentWrapper.style.left = positions[this.position].left + 'px'
+      contentWrapper.style.top = positions[this.position].top + 'px'
     },
     onClickDocument(e) {
       if (this.$refs.popover &&
