@@ -81,6 +81,25 @@ new Vue({
                     ]
                 }
             ]
+        }, {
+            name: '安徽',
+            children: [
+                {
+                    name: '合肥',
+                    children: [
+                        {name: '瑶海'},
+                        {name: '庐阳'}
+                    ]
+                },
+                {
+                    name: '芜湖',
+                    children: [
+                        {name: '鼓楼'},
+                        {name: '台江'},
+                        {name: '仓山'}
+                    ]
+                }
+            ]
         }]
     },
     created() {

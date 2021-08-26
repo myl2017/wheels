@@ -1,27 +1,29 @@
 <template>
   <div class="cascader">
-    <div class="trigger">
-      <slot></slot>
+    <div class="trigger" @click="popoverVisible = !popoverVisible">
     </div>
-    <div class="popover">
-      <div v-for="item in dataSource">
-        <cascader-item :source-item="item">{{ item.name }}</cascader-item>
-      </div>
+    <div class="popover" v-if="popoverVisible">
+      <cascader-items :items="dataSource"></cascader-items>
     </div>
   </div>
 </template>
 
 <script>
-import CascaderItem from './cascader-item'
+import CascaderItems from './cascader-items'
 
 export default {
   name: "GuluCascader",
   components: {
-    CascaderItem
+    CascaderItems
   },
   props: {
     dataSource: {
       type: Array
+    }
+  },
+  data() {
+    return {
+      popoverVisible: false
     }
   }
 }
@@ -31,6 +33,21 @@ export default {
 @import "var";
 
 .cascader {
+  .trigger {
+    border: 1px solid red;
+    height: 32px;
+    width: 100px;
+  }
+
+  .popover {
+    border: 1px solid red;
+    height: 200px;
+    display: flex;
+
+    .label {
+      white-space: nowrap;
+    }
+  }
 
 }
 </style>
