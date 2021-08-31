@@ -1,8 +1,8 @@
 <template>
   <div class="cascader-items" :style="{height: height}">
     <div>
-<!--      selected: {{ selected }}<br>-->
-<!--      level: {{ level }}-->
+      <!--      selected: {{ selected }}<br>-->
+      <!--      level: {{ level }}-->
     </div>
     <div class="left">
       <div class="label" v-for="item in items" @click="onClickLabel(item)">
@@ -11,7 +11,8 @@
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <gulu-cascader-items :items="rightItems" :height="height" :level="level + 1" :selected="selected" @update:selected="onUpdateSelected"></gulu-cascader-items>
+      <gulu-cascader-items :items="rightItems" :height="height" :level="level + 1" :selected="selected"
+                           @update:selected="onUpdateSelected"></gulu-cascader-items>
     </div>
   </div>
 </template>

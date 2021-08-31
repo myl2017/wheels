@@ -1,7 +1,11 @@
 <template>
   <div>
-    <g-button>你好</g-button>
-    <g-cascader :data-source="source" popover-height="200px" :selected="selected" @update:selected="selected = $event"></g-cascader>
+    <div style="padding: 20px;">
+      <g-cascader :data-source="source" popover-height="200px" :selected="selected"
+                  @update:selected="selected = $event">
+
+      </g-cascader>
+    </div>
   </div>
 </template>
 
@@ -24,11 +28,11 @@ export default {
           children: [
             {
               name: "杭州",
-              children: [{ name: "上城" }, { name: "下城" }, { name: "江干" }],
+              children: [{name: "上城"}, {name: "下城"}, {name: "江干"}],
             },
             {
               name: "嘉兴",
-              children: [{ name: "南湖" }, { name: "秀洲" }, { name: "嘉善" }],
+              children: [{name: "南湖"}, {name: "秀洲"}, {name: "嘉善"}],
             },
           ],
         },
@@ -37,7 +41,7 @@ export default {
           children: [
             {
               name: "福州",
-              children: [{ name: "鼓楼" }, { name: "台江" }, { name: "仓山" }],
+              children: [{name: "鼓楼"}, {name: "台江"}, {name: "仓山"}],
             },
           ],
         },
@@ -46,11 +50,11 @@ export default {
           children: [
             {
               name: "合肥",
-              children: [{ name: "瑶海" }, { name: "庐阳" }],
+              children: [{name: "瑶海"}, {name: "庐阳"}],
             },
             {
               name: "芜湖",
-              children: [{ name: "鼓楼" }, { name: "台江" }, { name: "仓山" }],
+              children: [{name: "鼓楼"}, {name: "台江"}, {name: "仓山"}],
             },
           ],
         },
@@ -62,11 +66,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
-* { margin: 0;padding: 0;box-sizing: border-box;}
-img { max-width: 100%; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
 html {
   --font-size: 14px;
 }
+
 body {
   font-size: var(--font-size);
 }
