@@ -4,6 +4,14 @@
       <g-cascader :source.sync="source" popover-height="200px"
                   :selected.sync="selected" :load-data="loadData"></g-cascader>
     </div>
+    <g-popover>
+      <template>
+        <button>点我</button>
+      </template>
+      <template slot="content">
+        弹出内容
+      </template>
+    </g-popover>
   </div>
 </template>
 
@@ -11,6 +19,7 @@
 import Button from "./button";
 import Cascader from "./cascader";
 import db from './db'
+import Popover from './popover'
 
 
 // function ajax(parentId = 0, success, fail) {
@@ -42,6 +51,7 @@ export default {
   components: {
     "g-button": Button,
     "g-cascader": Cascader,
+    'g-popover': Popover
   },
   data() {
     return {

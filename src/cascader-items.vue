@@ -51,7 +51,7 @@ export default {
         }
       }
     }
-    },
+  },
   methods: {
     rightArrowVisible(item) {
       return this.loadData ? !item.isLeaf : item.children
@@ -94,6 +94,7 @@ export default {
     display: flex;
     align-items: center;
     cursor: pointer;
+    white-space: nowrap;
 
     &:hover {
       background: $grey;
