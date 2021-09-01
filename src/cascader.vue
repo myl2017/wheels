@@ -5,6 +5,7 @@
     </div>
     <div class="popover-wrapper" v-if="popoverVisible">
       <cascader-items :items="source" class="popover" :loadData="loadData"
+                      :loading-item="loadingItem"
                       :height="popoverHeight" :selected="selected" @update:selected="onUpdateSelected"></cascader-items>
     </div>
   </div>
@@ -31,9 +32,7 @@ export default {
     },
     selected: {
       type: Array,
-      default: () => {
-        return [];
-      }
+      default: () => { return []; }
     },
     loadData: {
       type: Function
@@ -41,7 +40,8 @@ export default {
   },
   data() {
     return {
-      popoverVisible: false
+      popoverVisible: false,
+      loadingItem: {}
     }
   },
   methods: {
@@ -95,14 +95,16 @@ export default {
       // 单向
       // 深拷贝 immutable.js
       let updateSource = (result) => {
+        this.loadingItem = {}
         let copy = JSON.parse(JSON.stringify(this.source))
         let toUpdate = complex(copy, lastItem.id)
         toUpdate.children = result
         this.$emit('update:source', copy)
       }
-      if (!lastItem.isLeaf) {
-        this.loadData && this.loadData(lastItem, updateSource) // 回调: 把别人传给我的函数调用一下
+      if (!lastItem.isLeaf && this.loadData) {
+        this.loadData(lastItem, updateSource) // 回调: 把别人传给我的函数调用一下
         // 调回调的时候传一个函数，这个函数理论应该被调用
+        this.loadingItem = lastItem
       }
     }
   },
@@ -118,9 +120,11 @@ export default {
 @import "var";
 
 .cascader {
+  display: inline-block;
   position: relative;
 
   .trigger {
+    background: white;
     height: $input-height;
     display: inline-flex;
     align-items: center;
@@ -134,8 +138,10 @@ export default {
     position: absolute;
     top: 100%;
     left: 0;
+    z-index: 1;
     background: white;
     display: flex;
+    margin-top: 8px;
     @extend .box-shadow;
   }
 

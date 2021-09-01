@@ -4,14 +4,14 @@
       <g-cascader :source.sync="source" popover-height="200px"
                   :selected.sync="selected" :load-data="loadData"></g-cascader>
     </div>
-    <g-popover>
-      <template>
-        <button>点我</button>
-      </template>
-      <template slot="content">
-        弹出内容
-      </template>
-    </g-popover>
+<!--    <g-popover>-->
+<!--      <template>-->
+<!--        <button>点我</button>-->
+<!--      </template>-->
+<!--      <template slot="content">-->
+<!--        弹出内容-->
+<!--      </template>-->
+<!--    </g-popover>-->
   </div>
 </template>
 
@@ -57,8 +57,7 @@ export default {
   data() {
     return {
       selected: [],
-      source: [],
-      popoverHeight: "200px",
+      source: []
     };
   },
   created() {
@@ -71,24 +70,8 @@ export default {
   },
   methods: {
     loadData({id}, updateSource) {
-      console.log(id)
       ajax2(id).then(result => {
-        updateSource(result)
-      })
-    },
-    onUpdateSource() {
-
-    },
-    onUpdateSelected() {
-
-    },
-    xxx() {
-      console.log(this.selected);
-      ajax2(this.selected[0].id).then((result) => {
-        console.log(result)
-        let lastLevelSelected = this.source.filter(item => item.id === this.selected[0].id)[0]
-        this.$set(lastLevelSelected, 'children', result)
-        console.log(lastLevelSelected)
+        updateSource(result) // 回调： 把别人传给我的函数调用一下
       })
     }
   }
