@@ -20,6 +20,7 @@ import Button from "./button";
 import Cascader from "./cascader";
 import db from './db'
 import Popover from './popover'
+import {removeListener} from "./click-outside";
 
 
 // function ajax(parentId = 0, success, fail) {
@@ -64,6 +65,9 @@ export default {
     ajax2(0).then((result) => {
       this.source = result
     })
+  },
+  destroyed() {
+    removeListener()
   },
   methods: {
     loadData({id}, updateSource) {
