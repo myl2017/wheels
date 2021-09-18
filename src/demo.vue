@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      selected: '1'
+      selected: ''
     };
   },
   created() {
@@ -57,6 +57,5 @@ export default {
   width: 100%;
   height: 350px;
   background: #ddd;
-  border: 1px solid red;
 }
 </style>
