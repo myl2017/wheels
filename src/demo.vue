@@ -1,43 +1,28 @@
 <template>
-  <div class="wrapper">
-    <g-slides :selected="selected">
-      <g-slides-item name="1">
-        <div class="box">1</div>
-      </g-slides-item>
-      <g-slides-item name="2">
-        <div class="box">2</div>
-      </g-slides-item>
-      <g-slides-item name="3">
-        <div class="box">3</div>
-      </g-slides-item>
-    </g-slides>
+  <div>
+    <g-nav :selected.sync="selected" multiple>
+      <g-nav-item name="home">首页</g-nav-item>
+      <g-nav-item name="about">关于</g-nav-item>
+      <g-nav-item name="hire">招聘</g-nav-item>
+    </g-nav>
   </div>
 </template>
 
 <script>
-import GSlides from './slides/slides'
-import GSlidesItem from './slides/slides-item'
+import GNav from './nav/nav.vue'
+import GNavItem from './nav/nav-item.vue'
+import GSubNav from './nav/sub-nav.vue'
 
 export default {
   name: "demo",
-  components: {
-    'g-slides': GSlides,
-    'g-slides-item': GSlidesItem
-  },
+  components: {GNav, GNavItem, GSubNav},
   data() {
     return {
-      selected: ''
+      selected: ['home']
     };
   },
   created() {
-    let n = 1
-    setInterval(() => {
-      if (n === 4) {
-        n = 1
-      }
-      this.selected = n.toString()
-      n++
-    }, 2000)
+
   }
 };
 </script>
@@ -47,15 +32,5 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-.wrapper {
-  margin: 40px;
-}
-
-.box {
-  width: 100%;
-  height: 350px;
-  background: #ddd;
 }
 </style>
