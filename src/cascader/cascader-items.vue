@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Icon from './icon'
+import Icon from '../icon'
 
 export default {
   name: 'GuluCascaderItems',
@@ -81,7 +81,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "var";
+@import "src/var";
 
 .cascader-items {
   display: flex;
