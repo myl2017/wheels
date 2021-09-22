@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Icon from './icon'
+import Icon from '../icon'
 
 export default {
   name: 'GuluButton',
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "var";
+@import "src/var";
 
 @keyframes spin {
   0% {
