@@ -7,6 +7,11 @@
 <script>
 export default {
   name: "GuluNav",
+  provide() {
+    return {
+      root: this
+    }
+  },
   props: {
     selected: {
       type: Array,
@@ -17,23 +22,30 @@ export default {
       default: false
     }
   },
+  data() {
+    return {
+      items: []
+    }
+  },
   mounted() {
-    console.log(this.$children)
-    this.updateChild()
+    this.updateChildren()
     this.listenToChildren()
   },
   updated() {
-    this.updateChild()
+    this.updateChildren()
   },
-  computed: {
-    items() {
-      return this.$children.filter(vm => vm.$options.name === 'GuluNavItem')
-    }
-  },
+  // computed: {
+  //   items() {
+  //     return this.$children.filter(vm => vm.$options.name === 'GuluNavItem')
+  //   }
+  // },
   methods: {
-    updateChild() {
+    addItem(vm) {
+      this.items.push(vm)
+    },
+    updateChildren() {
       this.items.forEach(vm => {
-        if (this.selected.indexOf(vm.name) >= 0) {
+        if (this.selected.indexOf(vm.name) >= 0) { // 代表包含
           vm.selected = true
         } else {
           vm.selected = false
