@@ -34,9 +34,11 @@ export default {
 
 <style scoped lang="scss">
 @import "styles/var";
+
 .g-nav-item {
   padding: 10px 20px;
   position: relative;
+
   &.selected {
     &::after {
       content: '';
@@ -56,6 +58,7 @@ export default {
   &.selected {
     background: $grey;
     color: $color;
+
     &::after {
       display: none;
     }
