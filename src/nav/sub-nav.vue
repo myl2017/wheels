@@ -93,15 +93,6 @@ export default {
 <style scoped lang="scss">
 @import "styles/var";
 
-.x-enter-active, .x-leave-active {
-}
-
-.x-enter, .x-leave-to {
-}
-
-.x-enter-to, .x-leave {
-}
-
 .g-sub-nav {
   position: relative;
 
