@@ -3,12 +3,15 @@
     <span class="g-sub-nav-label" @click="onClick">
       <slot name="title"></slot>
       <span class="g-sub-nav-icon" :class="{open}">
-        <i v-if="open" class="icons">&gt;</i>
+        <i v-if="open" class="icons">&lt;</i>
+        <i v-else class="icons">&gt;</i>
       </span>
     </span>
-    <div class="g-sub-nav-popover" v-show="open">
-      <slot></slot>
-    </div>
+    <transition name="x" @enter="enter" @leave="leave" @after-leave="afterLeave" @after-enter="afterEnter">
+      <div class="g-sub-nav-popover" v-show="open" :class="{vertical}">
+        <slot></slot>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -20,7 +23,7 @@ export default {
   components: {GIcon},
   directives: {ClickOutside},
   name: "GuluSubNav",
-  inject: ['root'],
+  inject: ['root', 'vertical'],
   props: {
     name: {
       type: String,
@@ -38,6 +41,30 @@ export default {
     }
   },
   methods: {
+    enter(el, done) {
+      let {height} = el.getBoundingClientRect()
+      el.style.height = 0
+      el.getBoundingClientRect()
+      el.style.height = `${height}px`
+      el.addEventListener('transitionend', () => {
+        done()
+      })
+    },
+    afterEnter(el) {
+      el.style.height = 'auto'
+    },
+    leave(el, done) {
+      let {height} = el.getBoundingClientRect()
+      el.style.height = `${height}px`
+      el.getBoundingClientRect()
+      el.style.height = 0
+      el.addEventListener('transitionend', () => {
+        done()
+      })
+    },
+    afterLeave(el) {
+      el.style.height = 'auto'
+    },
     onClick() {
       this.open = !this.open
     },
@@ -58,6 +85,15 @@ export default {
 
 <style scoped lang="scss">
 @import "styles/var";
+
+.x-enter-active, .x-leave-active {
+}
+
+.x-enter, .x-leave-to {
+}
+
+.x-enter-to, .x-leave {
+}
 
 .g-sub-nav {
   position: relative;
@@ -96,6 +132,15 @@ export default {
     font-size: $font-size;
     color: $light-color;
     min-width: 8em;
+
+    &.vertical {
+      position: static;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      transition: height 1s;
+      overflow: hidden;
+    }
   }
 }
 
@@ -131,7 +176,7 @@ export default {
     }
 
     &.open {
-      transform: rotate(180deg);
+      //transform: rotate(180deg);
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="g-nav">
+  <div class="g-nav" :class="{vertical}">
     <slot></slot>
   </div>
 </template>
@@ -9,7 +9,8 @@ export default {
   name: "GuluNav",
   provide() {
     return {
-      root: this
+      root: this,
+      vertical: this.vertical
     }
   },
   props: {
@@ -18,6 +19,10 @@ export default {
       default: () => []
     },
     multiple: {
+      type: Boolean,
+      default: false
+    },
+    vertical: {
       type: Boolean,
       default: false
     }
@@ -80,5 +85,10 @@ export default {
   border-bottom: 1px solid $grey;
   color: $color;
   cursor: default;
+
+  &.vertical {
+    flex-direction: column;
+    border: 1px solid $grey;
+  }
 }
 </style>
