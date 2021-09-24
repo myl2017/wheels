@@ -1,9 +1,9 @@
 <template>
   <div>
-    <g-nav :selected.sync="selected" style="margin: 20px;">
+    <g-nav :selected.sync="selected" style="margin: 20px;" @update:selected="onChange">
       <g-nav-item name="home">
         <a href="https://jirengu.com" target="_blank">首页</a>
-        </g-nav-item>
+      </g-nav-item>
       <g-sub-nav name="about">
         <template slot="title">关于</template>
         <g-nav-item name="culture">企业文化</g-nav-item>
@@ -60,11 +60,25 @@ export default {
   components: {GNav, GNavItem, GSubNav},
   data() {
     return {
-      selected: ['home']
+      selected: 'culture'
     };
   },
   created() {
 
+  },
+  methods: {
+    onChange(selected) {
+      if (selected === 'home') {
+        alert('hi')
+      }
+    }
+  },
+  watch: {
+    selected(newValue) {
+      if (newValue === 'home') {
+
+      }
+    }
   }
 };
 </script>
