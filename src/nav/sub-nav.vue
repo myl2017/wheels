@@ -1,5 +1,5 @@
 <template>
-  <div class="g-sub-nav" :class="{active}">
+  <div class="g-sub-nav" :class="{active}" v-click-outside="close">
     <span @click="onClick">
       <slot name="title"></slot>
     </span>
@@ -10,8 +10,12 @@
 </template>
 
 <script>
+import ClickOutside from '../click-outside'
+
 export default {
+  directives: {ClickOutside},
   name: "GuluSubNav",
+  inject: ['root'],
   props: {
     name: {
       type: String,
@@ -20,17 +24,28 @@ export default {
   },
   data() {
     return {
-      open: false,
-      active: false
+      open: false
+    }
+  },
+  computed: {
+    active() {
+      return this.root.namePath.indexOf(this.name) >= 0 ? true : false
     }
   },
   methods: {
     onClick() {
       this.open = !this.open
     },
-    x() {
-      this.active = true
-      console.log('x')
+    close() {
+      this.open = false
+    },
+    updateNamePath() {
+      this.root.namePath.unshift(this.name)
+      if (this.$parent.updateNamePath) {
+        this.$parent.updateNamePath()
+      } else {
+
+      }
     }
   }
 }
@@ -41,8 +56,10 @@ export default {
 
 .g-sub-nav {
   position: relative;
+
   &.active {
     position: relative;
+
     &::after {
       content: '';
       position: absolute;
