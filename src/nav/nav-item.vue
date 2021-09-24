@@ -25,6 +25,7 @@ export default {
   methods: {
     onClick() {
       this.$emit('add:selected', this.name)
+      this.$parent.x && this.$parent.x()
     }
   }
 }
@@ -32,11 +33,9 @@ export default {
 
 <style scoped lang="scss">
 @import "styles/var";
-
 .g-nav-item {
   padding: 10px 20px;
   position: relative;
-
   &.selected {
     &::after {
       content: '';
@@ -54,6 +53,8 @@ export default {
   color: $light-color;
 
   &.selected {
+    background: $grey;
+    color: $color;
     &::after {
       display: none;
     }
