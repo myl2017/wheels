@@ -7,11 +7,18 @@
         <i v-else class="icons">&gt;</i>
       </span>
     </span>
-    <transition name="x" @enter="enter" @leave="leave" @after-leave="afterLeave" @after-enter="afterEnter">
-      <div class="g-sub-nav-popover" v-show="open" :class="{vertical}">
+    <template v-if="vertical">
+      <transition name="x" @enter="enter" @leave="leave" @after-leave="afterLeave" @after-enter="afterEnter">
+        <div class="g-sub-nav-popover" v-show="open" :class="{vertical}">
+          <slot></slot>
+        </div>
+      </transition>
+    </template>
+    <template v-else>
+      <div class="g-sub-nav-popover" v-show="open">
         <slot></slot>
       </div>
-    </transition>
+    </template>
   </div>
 </template>
 
@@ -121,6 +128,7 @@ export default {
   }
 
   &-popover {
+    transition: height 250ms;
     background: white;
     position: absolute;
     top: 100%;
@@ -132,13 +140,11 @@ export default {
     font-size: $font-size;
     color: $light-color;
     min-width: 8em;
-
     &.vertical {
       position: static;
       border-radius: 0;
       border: none;
       box-shadow: none;
-      transition: height 1s;
       overflow: hidden;
     }
   }
