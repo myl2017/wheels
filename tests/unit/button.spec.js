@@ -34,8 +34,9 @@ describe('Button.vue', () => {
         expect(useElements.length).to.equal(1)
         expect(useElements[0].getAttribute('xlink:href')).to.equal('#i-loading')
     })
-    xit('icon 默认的 order 是 1', () => {
+    it('icon 默认的 order 是 1', () => {
         const wrapper = mount(Button, {
+            attachToDocument: true,
             propsData: {
                 icon: 'settings',
             }
@@ -49,6 +50,7 @@ describe('Button.vue', () => {
         document.body.appendChild(div)
         const Constructor = Vue.extend(Button)
         const vm = new Constructor({
+            attachToDocument: true,
             propsData: {
                 icon: 'settings',
                 iconPosition: 'right'
