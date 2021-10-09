@@ -81,7 +81,7 @@ export default {
   }
 
   .loading {
-    animation: spin 1s infinite linear;
+    @include spin;
   }
 
   &:hover {

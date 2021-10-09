@@ -1,23 +1,23 @@
 <template>
-	<svg class="g-icon">
-		<use :xlink:href="`#i-${name}`"/>
-	</svg>
+  <svg class="g-icon" @click="$emit('click', $event)">
+    <use :xlink:href="`#i-${name}`"/>
+  </svg>
 </template>
 
 <script>
-  import './svg'
+import './svg'
 
-  export default {
-    name: 'GuluIcon',
-    props: ['name']
-  }
+export default {
+  name: 'GuluIcon',
+  props: ['name']
+}
 </script>
 
 <style lang="scss" scoped>
-	.g-icon {
-		width: 1em;
-		height: 1em;
-		vertical-align: middle;
-		margin-top: 2px;
-	}
+.g-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  margin-top: 2px;
+}
 </style>
