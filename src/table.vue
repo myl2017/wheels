@@ -1,12 +1,14 @@
 <template>
-  <div class="gulu-table-wrapper" :style="{height}" ref="wrapper">
-    <div :style="{height, overflow: 'auto'}">
+  <div class="gulu-table-wrapper" :style="{height: height + 'px'}" ref="wrapper">
+    <div :style="{height: height + 'px', overflow: 'auto'}" ref="tableWrapper">
       <table class="gulu-table" :class="{bordered, compact, striped: striped}" ref="table">
         <thead>
         <tr>
-          <th><input type="checkbox" @change="onChangeAllItems" ref="allChecked" :checked="areAllItemsSelected"/></th>
-          <th v-if="numberVisible">#</th>
-          <th v-for="column in columns" :key="column.field">
+          <th :style="{width: '50px'}">
+            <input type="checkbox" @change="onChangeAllItems" ref="allChecked" :checked="areAllItemsSelected"/>
+          </th>
+          <th :style="{width: '50px'}" v-if="numberVisible">#</th>
+          <th :style="{width: column.width+'px'}" v-for="column in columns" :key="column.field">
             <div class="gulu-table-header">
               {{ column.text }}
               <span v-if="column.field in orderBy" class="gulu-table-sorter" @click="changeOrderBy(column.field)">
@@ -19,11 +21,12 @@
         </thead>
         <tbody>
         <tr v-for="(item, index) in dataSoruce" :key="item.id">
-          <td><input type="checkbox" @change="onChangeItem(item, index, $event)"
-                     :checked="inSelectedItems(item)"/></td>
-          <td v-if="numberVisible">{{ index + 1 }}</td>
+          <td :style="{width: '50px'}">
+            <input type="checkbox" @change="onChangeItem(item, index, $event)" :checked="inSelectedItems(item)"/>
+          </td>
+          <td :style="{width: '50px'}" v-if="numberVisible">{{ index + 1 }}</td>
           <template v-for="column in columns">
-            <td :key="column.field">{{ item[column.field] }}</td>
+            <td :style="{width: column.width + 'px'}" :key="column.field">{{ item[column.field] }}</td>
           </template>
         </tr>
         </tbody>
@@ -43,7 +46,7 @@ export default {
   name: "GuluTable",
   props: {
     height: {
-      type: [Number, String]
+      type: Number
     },
     orderBy: {
       type: Object,
@@ -91,9 +94,14 @@ export default {
     }
   },
   mounted() {
-    let table2 = this.$refs.table.cloneNode(true)
+    let table2 = this.$refs.table.cloneNode(false)
     this.table2 = table2
     table2.classList.add('gulu-table-copy')
+    let tHead = this.$refs.table.children[0]
+    let {height} = tHead.getBoundingClientRect()
+    this.$refs.tableWrapper.style.marginTop = height + 'px'
+    this.$refs.tableWrapper.style.height = this.height - height + 'px'
+    table2.appendChild(tHead)
     this.$refs.wrapper.appendChild(table2)
     this.updateHeaderWidth()
     this.onWindowResize = () => this.updateHeaderWidth()

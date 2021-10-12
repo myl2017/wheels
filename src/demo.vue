@@ -5,12 +5,12 @@
                :order-by.sync="orderBy"
                @update:orderBy="x" :loading="loading" height="400"></g-table>
     </div>
-    <div style="margin: 20px;">
-      <g-table :columns="columns" :data-soruce="dataSource" bordered compact :striped="false"></g-table>
-    </div>
-    <div style="margin: 20px;">
-      <g-pager :total-page="10" :current-page.sync="currentPage"></g-pager>
-    </div>
+    <!--    <div style="margin: 20px;">-->
+    <!--      <g-table :columns="columns" :data-soruce="dataSource" bordered compact :striped="false"></g-table>-->
+    <!--    </div>-->
+    <!--    <div style="margin: 20px;">-->
+    <!--      <g-pager :total-page="10" :current-page.sync="currentPage"></g-pager>-->
+    <!--    </div>-->
   </div>
 </template>
 
@@ -26,8 +26,8 @@ export default {
       currentPage: 1,
       selected: [],
       columns: [
-        {text: '姓名', field: 'name'},
-        {text: '分数', field: 'score'}
+        {text: '姓名', field: 'name', width: 100},
+        {text: '分数', field: 'score', width: 100}
       ],
       orderBy: { // true - 开启排序, 但是不确定asc desc
         score: 'desc'
