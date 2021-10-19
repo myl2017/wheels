@@ -1,79 +1,31 @@
 <template>
-  <div>
-    <div style="margin: 20px;">
-      <g-table :columns="columns" :data-soruce="dataSource" bordered :selected-items.sync="selected"
-               :order-by.sync="orderBy"
-               @update:orderBy="x" :loading="loading" height="400"></g-table>
-    </div>
-    <!--    <div style="margin: 20px;">-->
-    <!--      <g-table :columns="columns" :data-soruce="dataSource" bordered compact :striped="false"></g-table>-->
-    <!--    </div>-->
-    <!--    <div style="margin: 20px;">-->
-    <!--      <g-pager :total-page="10" :current-page.sync="currentPage"></g-pager>-->
-    <!--    </div>-->
+  <div style="margin: 20px;">
+    <div>只能上传 300kb 以内的 png、jpeg文件</div>
+    <gulu-uploader accept="image/*" method="POST" action="http://127.0.0.1:3000/upload" name="files"
+                   :parse-response="parseResponse" :file-list.sync="fileList">
+      <g-button icon="upload">上传</g-button>
+    </gulu-uploader>
   </div>
 </template>
 
 <script>
-import GPager from './pager'
-import GTable from './table'
+import GuluUploader from "./uploader";
+import GButton from './button/button'
+import GIcon from './icon'
 
 export default {
   name: "demo",
-  components: {GPager, GTable},
+  components: {GuluUploader, GButton},
   data() {
     return {
-      currentPage: 1,
-      selected: [],
-      columns: [
-        {text: '姓名', field: 'name', width: 100},
-        {text: '分数', field: 'score', width: 100}
-      ],
-      orderBy: { // true - 开启排序, 但是不确定asc desc
-        score: 'desc'
-      },
-      loading: false,
-      dataSource: [
-        {id: 1, name: '方方', score: 100},
-        {id: 2, name: '圆圆', score: 99},
-        {id: 3, name: '张三', score: 100},
-        {id: 4, name: '李四', score: 99},
-        {id: 5, name: '超人', score: 100},
-        {id: 6, name: '蝙蝠侠', score: 99},
-        {id: 7, name: '蜘蛛侠', score: 100},
-        {id: 8, name: '钢铁侠', score: 99},
-        {id: 9, name: '蜘蛛侠', score: 100},
-        {id: 10, name: '钢铁侠', score: 99},
-        {id: 11, name: '方方', score: 100},
-        {id: 12, name: '圆圆', score: 99},
-        {id: 13, name: '张三', score: 100},
-        {id: 14, name: '李四', score: 99},
-        {id: 15, name: '超人', score: 100},
-        {id: 16, name: '蝙蝠侠', score: 99},
-        {id: 17, name: '蜘蛛侠', score: 100},
-        {id: 18, name: '钢铁侠', score: 99},
-        {id: 19, name: '蜘蛛侠', score: 100},
-        {id: 20, name: '钢铁侠', score: 99},
-        {id: 21, name: '方方', score: 100},
-        {id: 22, name: '圆圆', score: 99},
-        {id: 23, name: '张三', score: 100},
-        {id: 24, name: '李四', score: 99},
-        {id: 25, name: '超人', score: 100},
-        {id: 26, name: '蝙蝠侠', score: 99},
-        {id: 27, name: '蜘蛛侠', score: 100},
-        {id: 28, name: '钢铁侠', score: 99},
-        {id: 29, name: '蜘蛛侠', score: 100},
-        {id: 30, name: '钢铁侠', score: 99}
-      ]
+      fileList: []
     }
   },
   methods: {
-    x() {
-      this.loading = true
-      setTimeout(() => {
-        this.dataSource = this.dataSource.sort((a, b) => a.score - b.score)
-        this.loading = false
-      }, 3000)
+    parseResponse(response) {
+      let object = JSON.parse(response)
+      let url = `http://127.0.0.1:3000/preview/${object.id}`
+      return url
     }
   }
 };
