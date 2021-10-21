@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/16</span>
+        <span class='fraction'>0/18</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/5</span>
+        <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/16</span>
+        <span class='fraction'>0/18</span>
       </div>
     </div>
   </div>
@@ -105,7 +105,10 @@
 60
 61
 62
-63</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+63
+64
+65
+66</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -121,6 +124,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -131,13 +140,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -148,13 +150,17 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -174,68 +180,71 @@
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
-  import Vue from 'vue'
-  export default {
-    name: "GuluCollapse",
-    props: {
-      single: {
-        type: Boolean,
-        default: false
-      },
-      selected: {
-        type: Array,
-      }
-    },
-    data (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >      return {</span>
-        eventBus: new Vue(),
-      }
-    },
-    provide (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >      return {</span>
-        eventBus: this.eventBus
-      }
-    },
-    mounted (<span class="fstat-no" title="function not covered" >) {</span>
+import Vue from "vue";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      this.eventBus.$emit('update:selected', this.selected</span>)
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      this.eventBus.$on('update:addSelected', (name) =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
-        let selectedCopy <span class="cstat-no" title="statement not covered" >= JSON.parse(JSON.stringify(this.selected)</span>)
-<span class="cstat-no" title="statement not covered" >        if (this.single) {</span>
-<span class="cstat-no" title="statement not covered" >          selectedCopy = [name</span>]
-        } else {
-<span class="cstat-no" title="statement not covered" >          selectedCopy.push(name</span>)
-        }
-<span class="cstat-no" title="statement not covered" >        this.eventBus.$emit('update:selected', selectedCopy</span>)
-<span class="cstat-no" title="statement not covered" >        this.$emit('update:selected', selectedCopy</span>)
-      })
-&nbsp;
-<span class="cstat-no" title="statement not covered" >      this.eventBus.$on('update:removeSelected', (name) =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
-        let selectedCopy <span class="cstat-no" title="statement not covered" >= JSON.parse(JSON.stringify(this.selected)</span>)
-        let index <span class="cstat-no" title="statement not covered" >= selectedCopy.indexOf(name</span>)
-<span class="cstat-no" title="statement not covered" >        selectedCopy.splice(index, 1</span>)
-<span class="cstat-no" title="statement not covered" >        this.eventBus.$emit('update:selected', selectedCopy</span>)
-<span class="cstat-no" title="statement not covered" >        this.$emit('update:selected', selectedCopy</span>)
-      })
+export default {
+  name: "GuluCollapse",
+  props: {
+    single: {
+      type: Boolean,
+      default: false
+    },
+    selected: {
+      type: Array
     }
+  },
+  data() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      eventBus: new Vue()
+    }
+  },
+  provide() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      eventBus: this.eventBus
+    }
+  },
+  mounted() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    this.eventBus.$emit('update:selected', this.selected)</span>
+<span class="cstat-no" title="statement not covered" >    this.eventBus.$on('update:addSelected', (name) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+      let selectedCopy = <span class="cstat-no" title="statement not covered" >JSON.parse(JSON.stringify(this.selected))</span>
+<span class="cstat-no" title="statement not covered" >      if (this.single) {</span>
+<span class="cstat-no" title="statement not covered" >        selectedCopy = [name]</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        selectedCopy.push(name)</span>
+      }
+<span class="cstat-no" title="statement not covered" >      this.eventBus.$emit('update:selected', selectedCopy)</span>
+<span class="cstat-no" title="statement not covered" >      this.$emit('update:selected', selectedCopy)</span>
+    })
+<span class="cstat-no" title="statement not covered" >    this.eventBus.$on('update:removeSelected', (name) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+      let selectedCopy = <span class="cstat-no" title="statement not covered" >JSON.parse(JSON.stringify(this.selected))</span>
+      let index = <span class="cstat-no" title="statement not covered" >selectedCopy.indexOf(name)</span>
+<span class="cstat-no" title="statement not covered" >      selectedCopy.splice(index, 1)</span>
+<span class="cstat-no" title="statement not covered" >      this.eventBus.$emit('update:selected', selectedCopy)</span>
+<span class="cstat-no" title="statement not covered" >      this.$emit('update:selected', selectedCopy)</span>
+    })
+<span class="cstat-no" title="statement not covered" >    this.$children.forEach((vm) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      vm.single = this.single</span>
+    })
   }
+}
 &lt;/script&gt;
 &nbsp;
 &lt;style scoped lang="scss"&gt;
-  $grey: #ddd;
-  $border-radius: 4px;
-  .collapse {
-    border: 1px solid $grey;
-    border-radius: $border-radius;
-  }
-&lt;/style&gt;</pre></td></tr>
+$grey: #ddd;
+$border-radius: 4px;
+.collapse {
+  border: 1px solid $grey;
+  border-radius: $border-radius;
+  border-bottom: none;
+}
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 08:58:25 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 10:32:30 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

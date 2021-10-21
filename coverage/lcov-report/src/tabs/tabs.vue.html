@@ -104,7 +104,8 @@
 59
 60
 61
-62</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+62
+63</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -118,6 +119,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,15 +140,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,7 +150,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -159,6 +160,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,69 +172,70 @@
     &lt;slot&gt;&lt;/slot&gt;
   &lt;/div&gt;
 &lt;/template&gt;
+&nbsp;
 &lt;script&gt;
-  import Vue from 'vue'
-  export default {
-    name: 'GuluTabs',
-    props: {
-      selected: {
-        type: String,
-        required: true
-      },
-      direction: {
-        type: String,
-        default: 'horizontal',
-        validator (value<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >          return ['horizontal', 'vertical'].indexOf(value) &gt;= </span>0
-        }
-      }
+import Vue from "vue";
+&nbsp;
+export default {
+  name: "GuluTabs",
+  props: {
+    selected: {
+      type: String,
+      required: true
     },
-    data (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >      return {</span>
-        eventBus: new Vue()
+    direction: {
+      type: String,
+      default: 'horizontal',
+      validator(value) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        return ['horizontal', 'vertical'].indexOf(value) &gt;= 0</span>
       }
-    },
-    provide (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >      return {</span>
-        eventBus: this.eventBus
-      }
-    },
-    methods: {
-      checkChildren (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        if (this.$children.length === 0) {</span>
-<span class="cstat-no" title="statement not covered" >          console &amp;&amp; console.warn &amp;&amp;</span>
-          console.warn('tabs的子组件应该是tabs-head和tabs-nav，但你没有写子组件')
-        }
-      },
-      selectTab (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        this.$children.forEach((vm) =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >          if (vm.$options.name === 'GuluTabsHead') {</span>
-<span class="cstat-no" title="statement not covered" >            vm.$children.forEach((childVm) =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >              if (childVm.$options.name === 'GuluTabsItem'</span>
-                &amp;&amp; childVm.name === this.selected) {
-<span class="cstat-no" title="statement not covered" >                this.eventBus.$emit('update:selected', this.selected, childVm</span>)
-              }
-            })
-          }
-        })
-      }
-    },
-    mounted (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >      this.checkChildren()</span>;
-<span class="cstat-no" title="statement not covered" >      this.selectTab()</span>;
     }
+  },
+  data() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      eventBus: new Vue()
+    }
+  },
+  provide() <span class="fstat-no" title="function not covered" >{ // 事件中心</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      eventBus: this.eventBus
+    }
+  },
+  methods: {
+    checkChildren() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      if(this.$children.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >        console &amp;&amp; console.warn &amp;&amp; console.warn('tabs的子组件应该是tabs-head和tabs-nav, 但你没有写子组件')</span>
+      }
+    },
+    selectedTab() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      this.$children.forEach((vm) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        if (vm.$options.name === 'GuluTabsHead') {</span>
+<span class="cstat-no" title="statement not covered" >          vm.$children.forEach((childVm) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >            if (childVm.$options.name === 'GuluTabsItem' &amp;&amp; childVm.name === this.selected) {</span>
+<span class="cstat-no" title="statement not covered" >              this.eventBus.$emit('update:selected', this.selected, childVm)</span>
+            }
+          })
+        }
+      })
+    }
+  },
+  mounted() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    this.checkChildren()</span>
+<span class="cstat-no" title="statement not covered" >    this.selectedTab()</span>
   }
+}
 &lt;/script&gt;
-&lt;style&gt;
-  .tabs {
-  }
-&lt;/style&gt;</pre></td></tr>
+&nbsp;
+&lt;style scoped&gt;
+&nbsp;
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 08:58:25 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 10:32:30 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

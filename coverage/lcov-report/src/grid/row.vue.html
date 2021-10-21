@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>0/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/5</span>
+        <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/7</span>
+        <span class='fraction'>0/8</span>
       </div>
     </div>
   </div>
@@ -93,7 +93,16 @@
 48
 49
 50
-51</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -103,18 +112,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,7 +134,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,58 +166,67 @@
     &lt;slot&gt;&lt;/slot&gt;
   &lt;/div&gt;
 &lt;/template&gt;
+&nbsp;
 &lt;script&gt;
-  export default {
-    name: 'GuluRow',
-    props: {
-      gutter: {
-        type: [Number, String]
-      },
-      align: {
-        type: String,
-        validator (value<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >          return ['left', 'right', 'center'].indexOf(value) &gt;= </span>0
-        }
-      }
+export default {
+  name: "GuluRow",
+  props: {
+    gutter: {
+      type: [Number, String]
     },
-    computed: {
-      rowStyle (<span class="fstat-no" title="function not covered" >) {</span>
-        let {gutter} <span class="cstat-no" title="statement not covered" >= thi</span>s
-<span class="cstat-no" title="statement not covered" >        return {marginLeft: -gutter / 2 + 'px', marginRight: -gutter / 2 + 'px'</span>}
-      },
-      rowClass (<span class="fstat-no" title="function not covered" >) {</span>
-        let {align} <span class="cstat-no" title="statement not covered" >= thi</span>s
-<span class="cstat-no" title="statement not covered" >        return [align &amp;&amp; `align-${align}`</span>]
+    align: {
+      type: String,
+      validator(value) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        return ['left', 'right', 'center'].indexOf(value) &gt;= 0;</span>
       }
-    },
-    mounted (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >      this.$children.forEach((vm) =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >        vm.gutter = this.gutte</span>r
-      })
     }
+  },
+  computed: {
+    rowStyle() <span class="fstat-no" title="function not covered" >{</span>
+      let {gutter} = <span class="cstat-no" title="statement not covered" >this</span>
+<span class="cstat-no" title="statement not covered" >      return {marginLeft: -gutter / 2 + 'px', marginRight: -gutter / 2 + 'px'}</span>
+    },
+    rowClass() <span class="fstat-no" title="function not covered" >{</span>
+      let {align} = <span class="cstat-no" title="statement not covered" >this</span>
+<span class="cstat-no" title="statement not covered" >      return [align &amp;&amp; `align-${align}`]</span>
+    }
+  },
+  created() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    console.log(this.$children);</span>
+  },
+  mounted() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    this.$children.forEach((vm) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      vm.gutter = this.gutter</span>
+    })
   }
+}
 &lt;/script&gt;
+&nbsp;
 &lt;style scoped lang="scss"&gt;
-  .row{
-    display: flex;
-    flex-wrap: wrap;
-    &amp;.align-left {
-      justify-content: flex-start;
-    }
-    &amp;.align-right {
-      justify-content: flex-end;
-    }
-    &amp;.align-center {
-      justify-content: center;
-    }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+&nbsp;
+  &amp;.align-left {
+    justify-content: flex-start;
   }
-&lt;/style&gt;</pre></td></tr>
+&nbsp;
+  &amp;.align-right {
+    justify-content: flex-end;
+  }
+&nbsp;
+  &amp;.align-center {
+    justify-content: center;
+  }
+}
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 08:58:25 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 10:32:30 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

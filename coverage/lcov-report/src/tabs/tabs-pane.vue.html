@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/5</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>0/5</span>
       </div>
     </div>
   </div>
@@ -83,7 +83,34 @@
 38
 39
 40
-41</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -99,20 +126,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,48 +156,62 @@
     &lt;slot&gt;&lt;/slot&gt;
   &lt;/div&gt;
 &lt;/template&gt;
+&nbsp;
 &lt;script&gt;
-  export default {
-    name: 'GuluTabsPane',
-    inject: ['eventBus'],
-    data (<span class="fstat-no" title="function not covered" >) {</span>
+export default {
+  name: "GuluTabsPane",
+  inject: ['eventBus'],
+  data() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      active: false
+    }
+  },
+  props: {
+    name: {
+      type: String | Number,
+      required: true
+    }
+  },
+  computed: {
+    classes() <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >      return {</span>
-        active: false
+        active: this.active
       }
-    },
-    props: {
-      name: {
-        type: String | Number,
-        required: true
-      }
-    },
-    computed: {
-      classes (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        return {</span>
-          active: this.active
-        }
-      }
-    },
-    created (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >      this.eventBus.$on('update:selected', (name) =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >        this.active = name === this.name</span>;
-      })
     }
+  },
+  created() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    this.eventBus.$on('update:selected', (name) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      console.log(name)</span>
+<span class="cstat-no" title="statement not covered" >      this.active = name === this.name</span>
+&nbsp;
+      // if (name === this.name) {
+      //   console.log(`我${this.name}被选中了`)
+      //   this.active = true
+      // } else {
+      //   console.log(`我${this.name}没被选中了`)
+      //   this.active = false
+      // }
+&nbsp;
+    })
   }
+}
 &lt;/script&gt;
-&lt;style lang="scss" scoped&gt;
-  .tabs-pane {
-    padding: 1em;
-    &amp;.active {
-    }
+&nbsp;
+&lt;style scoped lang="scss"&gt;
+.tabs-pane {
+  padding: 1em;
+&nbsp;
+  &amp;.active {
   }
-&lt;/style&gt;</pre></td></tr>
+}
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 08:58:25 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 10:32:30 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

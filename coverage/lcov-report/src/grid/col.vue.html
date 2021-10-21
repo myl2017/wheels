@@ -35,9 +35,9 @@
         <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.88% </span>
+        <span class="strong">5% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>1/17</span>
+        <span class='fraction'>1/20</span>
       </div>
     </div>
   </div>
@@ -179,7 +179,27 @@
 134
 135
 136
-137</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -218,10 +238,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -229,6 +245,18 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -237,6 +265,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -320,144 +358,163 @@
     &lt;slot&gt;&lt;/slot&gt;
   &lt;/div&gt;
 &lt;/template&gt;
+&nbsp;
 &lt;script&gt;
-  let validator = (value) =<span class="fstat-no" title="function not covered" >&gt; {</span>
-    let keys <span class="cstat-no" title="statement not covered" >= Object.keys(value</span>)
-    let valid <span class="cstat-no" title="statement not covered" >= tru</span>e
-<span class="cstat-no" title="statement not covered" >    keys.forEach(key =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >      if (!['span', 'offset'].includes(key)) {</span>
-<span class="cstat-no" title="statement not covered" >        valid = fals</span>e
-      }
-    })
-<span class="cstat-no" title="statement not covered" >    return vali</span>d
-  }
-  export default {
-    name: 'GuluCol',
-    props: {
-      span: {
-        type: [Number, String]
-      },
-      offset: {
-        type: [Number, String]
-      },
-      ipad: {type: Object, validator,},
-      narrowPc: {type: Object, validator,},
-      pc: {type: Object, validator,},
-      widePc: {type: Object, validator,}
+let validator = (value) =&gt; <span class="fstat-no" title="function not covered" >{</span>
+  let keys = <span class="cstat-no" title="statement not covered" >Object.keys(value)</span>
+  let invalid = <span class="cstat-no" title="statement not covered" >true</span>
+<span class="cstat-no" title="statement not covered" >  keys.forEach(key =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    if (!['span', 'offset'].includes(key)) {</span>
+<span class="cstat-no" title="statement not covered" >      invalid = false</span>
+    }
+  })
+<span class="cstat-no" title="statement not covered" >  return invalid</span>
+}
+export default {
+  name: "GuluCol",
+  props: {
+    span: {
+      type: [Number, String]
     },
-    data (<span class="fstat-no" title="function not covered" >) {</span>
+    offset: {
+      type: [Number, String]
+    },
+    ipad: {type: Object, validator,},
+    narrowPc: {type: Object, validator,},
+    pc: {type: Object, validator,},
+    widePc: {type: Object, validator,}
+  },
+  data() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      gutter: 0
+    }
+  },
+  methods: {
+    createClasses(obj, str = '') <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      if (!obj) {</span>
+<span class="cstat-no" title="statement not covered" >        return []</span>
+      }
+      // ipad-
+      // pc-
+      let array = <span class="cstat-no" title="statement not covered" >[]</span>
+<span class="cstat-no" title="statement not covered" >      if (obj.span) {</span>
+<span class="cstat-no" title="statement not covered" >        array.push(`col-${str}${obj.span}`)</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (obj.offset) {</span>
+<span class="cstat-no" title="statement not covered" >        array.push(`offset-${str}${obj.offset}`)</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return array</span>
+    }
+  },
+  computed: {
+    colClass() <span class="fstat-no" title="function not covered" >{</span>
+      let {span, offset, ipad, narrowPc, pc, widePc} = <span class="cstat-no" title="statement not covered" >this</span>
+      let createClasses = <span class="cstat-no" title="statement not covered" >this.createClasses</span>
+<span class="cstat-no" title="statement not covered" >      return [</span>
+        ...createClasses({span, offset}),
+        ...createClasses(ipad, 'ipad-'),
+        ...createClasses(narrowPc, 'narrow-pc-'),
+        ...createClasses(pc, 'pc-'),
+        ...createClasses(widePc, 'wide-pc-')
+      ]
+    },
+    colStyle() <span class="fstat-no" title="function not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >      return {</span>
-        gutter: 0,
-      }
-    },
-    methods: {
-      createClasses (obj, str = ''<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        if (!obj)<span class="cstat-no" title="statement not covered" > {return [</span>]</span>}
-        let array <span class="cstat-no" title="statement not covered" >= [</span>]
-<span class="cstat-no" title="statement not covered" >        if (obj.span) <span class="cstat-no" title="statement not covered" >{ array.push(`col-${str}${obj.span}`</span>) </span>}
-<span class="cstat-no" title="statement not covered" >        if (obj.offset) <span class="cstat-no" title="statement not covered" >{ array.push(`offset-${str}${obj.offset}`</span>) </span>}
-<span class="cstat-no" title="statement not covered" >        return arra</span>y
-      }
-    },
-    computed: {
-      colClass (<span class="fstat-no" title="function not covered" >) {</span>
-        let {span, offset, ipad, narrowPc, pc, widePc} <span class="cstat-no" title="statement not covered" >= thi</span>s
-        let createClasses <span class="cstat-no" title="statement not covered" >= this.createClasse</span>s
-<span class="cstat-no" title="statement not covered" >        return [</span>
-          ...createClasses({span, offset}),
-          ...createClasses(ipad, 'ipad-'),
-          ...createClasses(narrowPc, 'narrow-pc-'),
-          ...createClasses(pc, 'pc-'),
-          ...createClasses(widePc, 'wide-pc-'),
-        ]
-      },
-      colStyle (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        return {</span>
-          paddingLeft: this.gutter / 2 + 'px',
-          paddingRight: this.gutter / 2 + 'px',
-        }
+        paddingLeft: this.gutter / 2 + 'px',
+        paddingRight: this.gutter / 2 + 'px'
       }
     }
   }
+}
 &lt;/script&gt;
+&nbsp;
 &lt;style scoped lang="scss"&gt;
-  .col {
-    $class-prefix: col-;
+.col {
+  // phone 默认
+  $class-prefix: col-;
+  @for $n from 1 through 24 {
+    &amp;.#{$class-prefix}#{$n} {
+      width: ($n / 24) * 100%;
+    }
+  }
+  $class-prefix: offset-; /*可以重复用同一个变量*/
+  @for $n from 1 through 24 {
+    &amp;.#{$class-prefix}#{$n} {
+      margin-left: ($n / 24) * 100%;
+    }
+  }
+&nbsp;
+  // ipad
+  @media (min-width: 577px) {
+    $class-prefix: col-ipad-;
     @for $n from 1 through 24 {
       &amp;.#{$class-prefix}#{$n} {
         width: ($n / 24) * 100%;
       }
     }
-    $class-prefix: offset-;
+    $class-prefix: offset-ipad-; /*可以重复用同一个变量*/
     @for $n from 1 through 24 {
       &amp;.#{$class-prefix}#{$n} {
         margin-left: ($n / 24) * 100%;
       }
     }
-    @media (min-width: 577px) {
-      $class-prefix: col-ipad-;
-      @for $n from 1 through 24 {
-        &amp;.#{$class-prefix}#{$n} {
-          width: ($n / 24) * 100%;
-        }
-      }
-      $class-prefix: offset-ipad-;
-      @for $n from 1 through 24 {
-        &amp;.#{$class-prefix}#{$n} {
-          margin-left: ($n / 24) * 100%;
-        }
+  }
+  // narrow-pc
+  @media (min-width: 769px) {
+    $class-prefix: col-narrow-pc;
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        width: ($n / 24) * 100%;
       }
     }
-    @media (min-width: 769px){ // 770
-      $class-prefix: col-narrow-pc-;
-      @for $n from 1 through 24 {
-        &amp;.#{$class-prefix}#{$n} {
-          width: ($n / 24) * 100%;
-        }
-      }
-      $class-prefix: offset-narrow-pc-;
-      @for $n from 1 through 24 {
-        &amp;.#{$class-prefix}#{$n} {
-          margin-left: ($n / 24) * 100%;
-        }
-      }
-    }
-    @media (min-width: 993px) {
-      $class-prefix: col-pc-;
-      @for $n from 1 through 24 {
-        &amp;.#{$class-prefix}#{$n} {
-          width: ($n / 24) * 100%;
-        }
-      }
-      $class-prefix: offset-pc-;
-      @for $n from 1 through 24 {
-        &amp;.#{$class-prefix}#{$n} {
-          margin-left: ($n / 24) * 100%;
-        }
-      }
-    }
-    @media (min-width: 1201px) {
-      $class-prefix: col-wide-pc-;
-      @for $n from 1 through 24 {
-        &amp;.#{$class-prefix}#{$n} {
-          width: ($n / 24) * 100%;
-        }
-      }
-      $class-prefix: offset-wide-pc-;
-      @for $n from 1 through 24 {
-        &amp;.#{$class-prefix}#{$n} {
-          margin-left: ($n / 24) * 100%;
-        }
+    $class-prefix: offset-narrow-pc; /*可以重复用同一个变量*/
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        margin-left: ($n / 24) * 100%;
       }
     }
   }
+  // pc
+  @media (min-width: 993px) {
+    $class-prefix: col-pc;
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        width: ($n / 24) * 100%;
+      }
+    }
+    $class-prefix: offset-pc; /*可以重复用同一个变量*/
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        margin-left: ($n / 24) * 100%;
+      }
+    }
+  }
+  // wide-pc
+  @media (min-width: 1201px) {
+    $class-prefix: col-wide-pc;
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        width: ($n / 24) * 100%;
+      }
+    }
+    $class-prefix: offset-wide-pc; /*可以重复用同一个变量*/
+    @for $n from 1 through 24 {
+      &amp;.#{$class-prefix}#{$n} {
+        margin-left: ($n / 24) * 100%;
+      }
+    }
+  }
+&nbsp;
+}
+&nbsp;
+&nbsp;
 &lt;/style&gt;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 08:58:25 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 10:32:30 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

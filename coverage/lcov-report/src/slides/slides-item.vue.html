@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>2/2</span>
       </div>
     </div>
   </div>
@@ -110,17 +110,7 @@
 65
 66
 67
-68
-69</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+68</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,11 +135,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">36×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -180,80 +178,79 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
-  &lt;div&gt;
-    &lt;template v-if="animationEnabled"&gt;
-      &lt;transition name="slide"&gt;
-        &lt;div class="g-slides-item" v-if="visible" :class="{reverse}"&gt;
-          &lt;slot&gt;&lt;/slot&gt;
-        &lt;/div&gt;
-      &lt;/transition&gt;
-    &lt;/template&gt;
-    &lt;template v-else&gt;
-      &lt;div class="g-slides-item" v-if="visible" :class="{reverse}"&gt;
-        &lt;slot&gt;&lt;/slot&gt;
-      &lt;/div&gt;
-    &lt;/template&gt;
-  &lt;/div&gt;
+  &lt;transition name="slide"&gt;
+    &lt;div class="g-slides-item" v-if="visible" :class="{'reverse': reverse}"&gt;
+      &lt;slot&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+  &lt;/transition&gt;
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
-  export default {
-    name: 'GuluSlidesItem',
-    props: {
-      name: {
-        type: String,
-        required: true
-      }
-    },
-    data () {
-      return {
-        selected: undefined,
-        reverse: false,
-        animationEnabled: false
-      }
-    },
-    updated () {
-      this.animationEnabled = true
-    },
-    computed: {
-      visible () {
-        return this.selected === this.name
-      }
+export default {
+  name: 'GuluSlidesItem',
+  props: {
+    name: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      // visible: false,
+      selected: undefined,
+      reverse: false
+    }
+  },
+  created() {
+&nbsp;
+  },
+  computed: {
+    visible() {
+      return this.selected === this.name
     }
   }
+}
 &lt;/script&gt;
 &nbsp;
-&lt;style lang="scss" scoped&gt;
-  .g-slides-item {
-  }
-  .slide-leave-active {
-    position: absolute;
-    left: 0; top: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .slide-enter-active, .slide-leave-active {
-    transition: all 0.5s;
-  }
-  .slide-enter {
-    transform: translateX(100%);
-  }
-  .slide-enter.reverse {
-    transform: translateX(-100%);
-  }
-  .slide-leave-to {
-    transform: translateX(-100%);
-  }
-  .slide-leave-to.reverse {
-    transform: translateX(100%);
-  }
-&lt;/style&gt;</pre></td></tr>
+&lt;style scoped lang="scss"&gt;
+.g-slides-item {
+}
+&nbsp;
+.slide-leave-active {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+&nbsp;
+.slide-enter-active, .slide-leave-active {
+  transition: all .5s;
+}
+&nbsp;
+.slide-enter {
+  transform: translateX(100%);
+}
+&nbsp;
+.slide-enter.reverse {
+  transform: translateX(-100%);
+}
+&nbsp;
+.slide-leave-to {
+  transform: translateX(-100%);
+}
+&nbsp;
+.slide-leave-to.reverse {
+  transform: translateX(100%);
+}
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 08:58:25 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 10:32:30 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>

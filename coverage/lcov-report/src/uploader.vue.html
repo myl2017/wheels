@@ -239,7 +239,8 @@
 194
 195
 196
-197</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+197
+198</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -389,6 +390,7 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -463,181 +465,182 @@
 &lt;/template&gt;
 &nbsp;
 &lt;script&gt;
-  import GIcon from './icon'
-  import http from './http'
+import GIcon from './icon'
+import http from './http'
 &nbsp;
-  export default {
-    name: "GuluUploader",
-    components: {GIcon},
-    props: {
-      name: {type: String, required: true},
-      action: {type: String, required: true},
-      method: {type: String, default: 'POST'},
-      parseResponse: {type: Function, required: true},
-      fileList: {type: Array, default: () =<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >&gt; [</span></span>]},
-      sizeLimit: {type: Number}
-    },
-    data () {
-      return {
-        url: 'about:blank'
-      }
-    },
-    methods: {
-      onClickUpload () {
-        let input = this.createInput()
-        input.addEventListener('change', (e) =<span class="fstat-no" title="function not covered" >&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          this.uploadFiles(input.files</span>) // 单文件
-<span class="cstat-no" title="statement not covered" >          input.remove(</span>)
-        })
-        input.click()
-      },
-      onRemoveFile (file<span class="fstat-no" title="function not covered" >) {</span>
-        let answer <span class="cstat-no" title="statement not covered" >= window.confirm('你确定要删除这玩意吗'</span>)
-<span class="cstat-no" title="statement not covered" >        if (answer) {</span>
-          let copy <span class="cstat-no" title="statement not covered" >= [...this.fileList</span>]
-          let index <span class="cstat-no" title="statement not covered" >= copy.indexOf(file</span>)
-<span class="cstat-no" title="statement not covered" >          copy.splice(index, 1</span>)
-<span class="cstat-no" title="statement not covered" >          this.$emit('update:fileList', copy</span>)
-        }
-      },
-      beforeUploadFiles (rawFiles, newNames<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        rawFiles = Array.from(rawFiles</span>)
-<span class="cstat-no" title="statement not covered" >        for (let i <span class="cstat-no" title="statement not covered" >= </span>0; i &lt; rawFiles.length; i++) {</span>
-          let {size, type} <span class="cstat-no" title="statement not covered" >= rawFiles[i</span>]
-<span class="cstat-no" title="statement not covered" >          if (size &gt; this.sizeLimit) {</span>
-<span class="cstat-no" title="statement not covered" >            this.$emit('error', '文件大于2MB'</span>)
-<span class="cstat-no" title="statement not covered" >            return fals</span>e
-          }
-        }
-        let x <span class="cstat-no" title="statement not covered" >= rawFiles.map((rawFile, i) =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
-          let {type, size} <span class="cstat-no" title="statement not covered" >= rawFil</span>e
-<span class="cstat-no" title="statement not covered" >          return {name: newNames[i], type, size, status: 'uploading'</span>}
-        })
-<span class="cstat-no" title="statement not covered" >        this.$emit('update:fileList', [...this.fileList, ...x]</span>)
-<span class="cstat-no" title="statement not covered" >        return tru</span>e
-      },
-      afterUploadFiles (newName, url<span class="fstat-no" title="function not covered" >) {</span>
-        let file <span class="cstat-no" title="statement not covered" >= this.fileList.filter(f =<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >&gt; f.name === newNam</span></span>e)[0</span>]
-        let index <span class="cstat-no" title="statement not covered" >= this.fileList.indexOf(file</span>)
-        let fileCopy <span class="cstat-no" title="statement not covered" >= JSON.parse(JSON.stringify(file)</span>)
-<span class="cstat-no" title="statement not covered" >        fileCopy.url = ur</span>l
-<span class="cstat-no" title="statement not covered" >        fileCopy.status = 'success</span>'
-        let fileListCopy <span class="cstat-no" title="statement not covered" >= [...this.fileList</span>]
-<span class="cstat-no" title="statement not covered" >        fileListCopy.splice(index, 1, fileCopy</span>)
-<span class="cstat-no" title="statement not covered" >        this.$emit('update:fileList', fileListCopy</span>)
-<span class="cstat-no" title="statement not covered" >        this.$emit('uploaded'</span>)
-      },
-      uploadFiles (rawFiles<span class="fstat-no" title="function not covered" >) {</span>
-        let newNames <span class="cstat-no" title="statement not covered" >= [</span>]
-<span class="cstat-no" title="statement not covered" >        for (let i <span class="cstat-no" title="statement not covered" >= </span>0; i &lt; rawFiles.length; i++) {</span>
-          let rawFile <span class="cstat-no" title="statement not covered" >= rawFiles[i</span>]
-          let {name, size, type} <span class="cstat-no" title="statement not covered" >= rawFil</span>e
-          let newName <span class="cstat-no" title="statement not covered" >= this.generateName(name</span>)
-<span class="cstat-no" title="statement not covered" >          newNames[i] = newNam</span>e
-        }
-<span class="cstat-no" title="statement not covered" >        if (!this.beforeUploadFiles(rawFiles, newNames))<span class="cstat-no" title="statement not covered" > {retur</span>n</span>}
-<span class="cstat-no" title="statement not covered" >        for (let i <span class="cstat-no" title="statement not covered" >= </span>0; i &lt; rawFiles.length; i++) {</span>
-          let rawFile <span class="cstat-no" title="statement not covered" >= rawFiles[i</span>]
-          let newName <span class="cstat-no" title="statement not covered" >= newNames[i</span>]
-          let formData <span class="cstat-no" title="statement not covered" >= new FormData(</span>)
-<span class="cstat-no" title="statement not covered" >          formData.append(this.name, rawFile</span>)
-<span class="cstat-no" title="statement not covered" >          this.doUploadFiles(formData, (response) =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
-            let url <span class="cstat-no" title="statement not covered" >= this.parseResponse(response</span>)
-<span class="cstat-no" title="statement not covered" >            this.url = ur</span>l
-<span class="cstat-no" title="statement not covered" >            this.afterUploadFiles(newName, url</span>)
-          }, (xhr) =<span class="fstat-no" title="function not covered" >&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            this.uploadError(xhr, newName</span>)
-          })
-        }
-      },
-      uploadError (xhr, newName<span class="fstat-no" title="function not covered" >) {</span>
-        let file <span class="cstat-no" title="statement not covered" >= this.fileList.filter(f =<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >&gt; f.name === newNam</span></span>e)[0</span>]
-        let index <span class="cstat-no" title="statement not covered" >= this.fileList.indexOf(file</span>)
-        let fileCopy <span class="cstat-no" title="statement not covered" >= JSON.parse(JSON.stringify(file)</span>)
-<span class="cstat-no" title="statement not covered" >        fileCopy.status = 'fail</span>'
-        // fileCopy.failMessage = '尺寸过大'
-        let fileListCopy <span class="cstat-no" title="statement not covered" >= [...this.fileList</span>]
-<span class="cstat-no" title="statement not covered" >        fileListCopy.splice(index, 1, fileCopy</span>)
-<span class="cstat-no" title="statement not covered" >        this.$emit('update:fileList', fileListCopy</span>)
-        let error <span class="cstat-no" title="statement not covered" >= '</span>'
-<span class="cstat-no" title="statement not covered" >        if (xhr.status === 0) {</span>
-<span class="cstat-no" title="statement not covered" >          error = '网络无法连接</span>'
-        }
-<span class="cstat-no" title="statement not covered" >        this.$emit('error', error</span>)
-      },
-      generateName (name<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        while (this.fileList.filter(f =<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >&gt; f.name === nam</span></span>e).length &gt; 0) {</span>
-          let dotIndex <span class="cstat-no" title="statement not covered" >= name.lastIndexOf('.'</span>)
-          let nameWithoutExtension <span class="cstat-no" title="statement not covered" >= name.substring(0, dotIndex</span>)
-          let extension <span class="cstat-no" title="statement not covered" >= name.substring(dotIndex</span>)
-<span class="cstat-no" title="statement not covered" >          name = nameWithoutExtension + '(1)' + extensio</span>n
-        }
-<span class="cstat-no" title="statement not covered" >        return nam</span>e
-      },
-      doUploadFiles (formData, success, fail<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        http[this.method.toLowerCase()](this.action, {success, fail, data: formData}</span>)
-      },
-      createInput () {
-        this.$refs.temp.innerHTML = ''
-        let input = document.createElement('input')
-        input.accept = "image/png"
-        input.type = 'file'
-        input.multiple = true
-        this.$refs.temp.appendChild(input)
-        return input
-      }
-&nbsp;
+export default {
+  name: "GuluUploader",
+  components: {GIcon},
+  props: {
+    name: {type: String, required: true},
+    action: {type: String, required: true},
+    method: {type: String, default: 'POST'},
+    parseResponse: {type: Function, required: true},
+    fileList: {type: Array, default: () =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >[]}</span></span>,
+    sizeLimit: {type: Number}
+  },
+  data () {
+    return {
+      url: 'about:blank'
     }
+  },
+  methods: {
+    onClickUpload () {
+      let input = this.createInput()
+      input.addEventListener('change', (e) =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        this.uploadFiles(input.files) </span>// 单文件
+<span class="cstat-no" title="statement not covered" >        input.remove()</span>
+      })
+      input.click()
+    },
+    onRemoveFile (file) <span class="fstat-no" title="function not covered" >{</span>
+      let answer = <span class="cstat-no" title="statement not covered" >window.confirm('你确定要删除这玩意吗')</span>
+<span class="cstat-no" title="statement not covered" >      if (answer) {</span>
+        let copy = <span class="cstat-no" title="statement not covered" >[...this.fileList]</span>
+        let index = <span class="cstat-no" title="statement not covered" >copy.indexOf(file)</span>
+<span class="cstat-no" title="statement not covered" >        copy.splice(index, 1)</span>
+<span class="cstat-no" title="statement not covered" >        this.$emit('update:fileList', copy)</span>
+      }
+    },
+    beforeUploadFiles (rawFiles, newNames) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      rawFiles = Array.from(rawFiles)</span>
+<span class="cstat-no" title="statement not covered" >      for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; rawFiles.length; i++) {</span>
+        let {size, type} = <span class="cstat-no" title="statement not covered" >rawFiles[i]</span>
+<span class="cstat-no" title="statement not covered" >        if (size &gt; this.sizeLimit) {</span>
+<span class="cstat-no" title="statement not covered" >          this.$emit('error', '文件大于2MB')</span>
+<span class="cstat-no" title="statement not covered" >          return false</span>
+        }
+      }
+      let x = <span class="cstat-no" title="statement not covered" >rawFiles.map((rawFile, i) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+        let {type, size} = <span class="cstat-no" title="statement not covered" >rawFile</span>
+<span class="cstat-no" title="statement not covered" >        return {name: newNames[i], type, size, status: 'uploading'}</span>
+      })
+<span class="cstat-no" title="statement not covered" >      this.$emit('update:fileList', [...this.fileList, ...x])</span>
+<span class="cstat-no" title="statement not covered" >      return true</span>
+    },
+    afterUploadFiles (newName, url) <span class="fstat-no" title="function not covered" >{</span>
+      let file = <span class="cstat-no" title="statement not covered" >this.fileList.filter(f =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >f.name === newName)</span></span>[0]</span>
+      let index = <span class="cstat-no" title="statement not covered" >this.fileList.indexOf(file)</span>
+      let fileCopy = <span class="cstat-no" title="statement not covered" >JSON.parse(JSON.stringify(file))</span>
+<span class="cstat-no" title="statement not covered" >      fileCopy.url = url</span>
+<span class="cstat-no" title="statement not covered" >      fileCopy.status = 'success'</span>
+      let fileListCopy = <span class="cstat-no" title="statement not covered" >[...this.fileList]</span>
+<span class="cstat-no" title="statement not covered" >      fileListCopy.splice(index, 1, fileCopy)</span>
+<span class="cstat-no" title="statement not covered" >      this.$emit('update:fileList', fileListCopy)</span>
+<span class="cstat-no" title="statement not covered" >      this.$emit('uploaded')</span>
+    },
+    uploadFiles (rawFiles) <span class="fstat-no" title="function not covered" >{</span>
+      let newNames = <span class="cstat-no" title="statement not covered" >[]</span>
+<span class="cstat-no" title="statement not covered" >      for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; rawFiles.length; i++) {</span>
+        let rawFile = <span class="cstat-no" title="statement not covered" >rawFiles[i]</span>
+        let {name, size, type} = <span class="cstat-no" title="statement not covered" >rawFile</span>
+        let newName = <span class="cstat-no" title="statement not covered" >this.generateName(name)</span>
+<span class="cstat-no" title="statement not covered" >        newNames[i] = newName</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (!this.beforeUploadFiles(rawFiles, newNames)) {<span class="cstat-no" title="statement not covered" >return}</span></span>
+<span class="cstat-no" title="statement not covered" >      for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; rawFiles.length; i++) {</span>
+        let rawFile = <span class="cstat-no" title="statement not covered" >rawFiles[i]</span>
+        let newName = <span class="cstat-no" title="statement not covered" >newNames[i]</span>
+        let formData = <span class="cstat-no" title="statement not covered" >new FormData()</span>
+<span class="cstat-no" title="statement not covered" >        formData.append(this.name, rawFile)</span>
+<span class="cstat-no" title="statement not covered" >        this.doUploadFiles(formData, (response) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+          let url = <span class="cstat-no" title="statement not covered" >this.parseResponse(response)</span>
+<span class="cstat-no" title="statement not covered" >          this.url = url</span>
+<span class="cstat-no" title="statement not covered" >          this.afterUploadFiles(newName, url)</span>
+        }, (xhr) =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >          this.uploadError(xhr, newName)</span>
+        })
+      }
+    },
+    uploadError (xhr, newName) <span class="fstat-no" title="function not covered" >{</span>
+      let file = <span class="cstat-no" title="statement not covered" >this.fileList.filter(f =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >f.name === newName)</span></span>[0]</span>
+      let index = <span class="cstat-no" title="statement not covered" >this.fileList.indexOf(file)</span>
+      let fileCopy = <span class="cstat-no" title="statement not covered" >JSON.parse(JSON.stringify(file))</span>
+<span class="cstat-no" title="statement not covered" >      fileCopy.status = 'fail'</span>
+      // fileCopy.failMessage = '尺寸过大'
+      let fileListCopy = <span class="cstat-no" title="statement not covered" >[...this.fileList]</span>
+<span class="cstat-no" title="statement not covered" >      fileListCopy.splice(index, 1, fileCopy)</span>
+<span class="cstat-no" title="statement not covered" >      this.$emit('update:fileList', fileListCopy)</span>
+      let error = <span class="cstat-no" title="statement not covered" >''</span>
+<span class="cstat-no" title="statement not covered" >      if (xhr.status === 0) {</span>
+<span class="cstat-no" title="statement not covered" >        error = '网络无法连接'</span>
+      }
+<span class="cstat-no" title="statement not covered" >      this.$emit('error', error)</span>
+    },
+    generateName (name) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      while (this.fileList.filter(f =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >f.name === name)</span></span>.length &gt; 0) {</span>
+        let dotIndex = <span class="cstat-no" title="statement not covered" >name.lastIndexOf('.')</span>
+        let nameWithoutExtension = <span class="cstat-no" title="statement not covered" >name.substring(0, dotIndex)</span>
+        let extension = <span class="cstat-no" title="statement not covered" >name.substring(dotIndex)</span>
+<span class="cstat-no" title="statement not covered" >        name = nameWithoutExtension + '(1)' + extension</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return name</span>
+    },
+    doUploadFiles (formData, success, fail) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      http[this.method.toLowerCase()](this.action, {success, fail, data: formData})</span>
+    },
+    createInput () {
+      this.$refs.temp.innerHTML = ''
+      let input = document.createElement('input')
+      input.accept = "image/png"
+      input.type = 'file'
+      input.multiple = true
+      this.$refs.temp.appendChild(input)
+      return input
+    }
+&nbsp;
   }
+}
 &lt;/script&gt;
 &nbsp;
 &lt;style scoped lang="scss"&gt;
-  @import "var";
-  .gulu-uploader {
-    &amp;-fileList {
-      list-style: none;
-      &gt; li {
-        display: flex;
-        align-items: center;
-        margin: 8px 0;
-        border: 1px solid darken($grey, 10%);
-      }
-    }
-    &amp;-defaultImage {
-      width: 32px;
-      height: 32px;
-      margin-right: 8px;
-    }
-    &amp;-image {
-      margin-right: 8px;
-      border: none;
-    }
-    &amp;-name {
-      margin-right: auto;
-      &amp;.success {
-        color: green;
-      }
-      &amp;.fail {
-        color: red;
-      }
-    }
-    &amp;-remove {
-      width: 32px;
-      height: 32px;
-    }
-    &amp;-spin {
-      width: 32px;
-      height: 32px;
-      @include spin;
+@import "var";
+.gulu-uploader {
+  &amp;-fileList {
+    list-style: none;
+    &gt; li {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+      border: 1px solid darken($grey, 10%);
     }
   }
-&lt;/style&gt;</pre></td></tr>
+  &amp;-defaultImage {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+  &amp;-image {
+    margin-right: 8px;
+    border: none;
+  }
+  &amp;-name {
+    margin-right: auto;
+    &amp;.success {
+      color: green;
+    }
+    &amp;.fail {
+      color: red;
+    }
+  }
+  &amp;-remove {
+    width: 32px;
+    height: 32px;
+  }
+  &amp;-spin {
+    width: 32px;
+    height: 32px;
+    @include spin;
+  }
+}
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 08:58:25 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 10:32:30 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../prettify.js"></script>

@@ -22,22 +22,22 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/9</span>
+        <span class='fraction'>0/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/5</span>
+        <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>0/10</span>
       </div>
     </div>
   </div>
@@ -111,7 +111,48 @@
 66
 67
 68
-69</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,6 +169,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,20 +188,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -184,76 +224,96 @@
     &lt;slot&gt;&lt;/slot&gt;
   &lt;/div&gt;
 &lt;/template&gt;
-&lt;script&gt;
-  export default {
-    name: 'GuluTabsItem',
-    inject: ['eventBus'],
-    data (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >      return {</span>
-        active: false
-      }
-    },
-    props: {
-      disabled: {
-        type: Boolean,
-        default: false
-      },
-      name: {
-        type: String | Number,
-        required: true
-      }
-    },
-    computed: {
-      classes (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        return {</span>
-          active: this.active,
-          disabled: this.disabled
-        }
-      }
-    },
-    created (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >      if (this.eventBus) {</span>
-<span class="cstat-no" title="statement not covered" >        this.eventBus.$on('update:selected', (name) =<span class="fstat-no" title="function not covered" >&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >          this.active = name === this.name</span>;
-        })
-      }
-    },
-    methods: {
-      onClick (<span class="fstat-no" title="function not covered" >) {</span>
-<span class="cstat-no" title="statement not covered" >        if (this.disabled) <span class="cstat-no" title="statement not covered" >{ retur</span>n </span>}
-<span class="cstat-no" title="statement not covered" >        this.eventBus &amp;&amp; this.eventBus.$emit('update:selected', this.name, this</span>)
-<span class="cstat-no" title="statement not covered" >        this.$emit('click', this</span>)
-      }
-    }
-  }
-&lt;/script&gt;
-&lt;style lang="scss" scoped&gt;
-  $blue: blue;
-  $disabled-text-color: grey;
-  .tabs-item {
-    flex-shrink: 0;
-    padding: 0 1em;
-    cursor: pointer;
-    height: 100%;
-    display: flex;
-    align-items: center;
 &nbsp;
-    &amp;.active {
-      color: $blue;
-      font-weight: bold;
+&lt;script&gt;
+export default {
+  name: "GuluTabsItem",
+  inject: ['eventBus'],
+  data() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return { // 不需要用户传值， 自己维护</span>
+      active: false
     }
-    &amp;.disabled {
-      color: $disabled-text-color;
-      cursor: not-allowed;
+  },
+  props: {
+    // active: { // 需要用户（前端开发者）传值
+    //   type: Boolean,
+    //   default: false
+    // },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    name: {
+      type: String | Number,
+      required: true
+    }
+  },
+  computed: {
+    classes() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      return {</span>
+        active: this.active,
+        disabled: this.disabled
+      }
+    }
+  },
+  created() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    if (this.eventBus) { // 防御型编程</span>
+<span class="cstat-no" title="statement not covered" >      this.eventBus.$on('update:selected', (name) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >        console.log(name)</span>
+<span class="cstat-no" title="statement not covered" >        this.active = name === this.name</span>
+        // if (name === this.name) {
+        //   console.log(`我${this.name}被选中了`)
+        //   this.active = true
+        // } else {
+        //   this.active = false
+        //   console.log(`我${this.name}没被选中了`)
+        // }
+      })
+    }
+  },
+  mounted() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    this.onClick()</span>
+  },
+  methods: {
+    onClick() <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      if (this.disabled) {</span>
+<span class="cstat-no" title="statement not covered" >        return</span>
+      }
+<span class="cstat-no" title="statement not covered" >      this.eventBus.$emit('update:selected', this.name, this)</span>
     }
   }
-&lt;/style&gt;</pre></td></tr>
+}
+&lt;/script&gt;
+&nbsp;
+&lt;style scoped lang="scss"&gt;
+$blue: blue;
+$disabled-text-color: gray;
+.tabs-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+  cursor: pointer;
+  height: 100%;
+&nbsp;
+  &amp;.active {
+    color: $blue;
+    font-weight: bold;
+  }
+&nbsp;
+  &amp;.disabled {
+    color: $disabled-text-color;
+    cursor: not-allowed;
+  }
+}
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 08:58:25 GMT+0800 (中国标准时间)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 21 2021 10:32:30 GMT+0800 (中国标准时间)
 </div>
 </div>
 <script src="../../prettify.js"></script>
